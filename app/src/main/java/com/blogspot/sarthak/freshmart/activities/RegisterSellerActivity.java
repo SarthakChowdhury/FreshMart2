@@ -25,10 +25,13 @@ import android.provider.MediaStore;
 import android.text.TextUtils;
 import android.util.Patterns;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.blogspot.atifsoftwares.grocery.R;
@@ -54,6 +57,10 @@ public class RegisterSellerActivity extends AppCompatActivity implements Locatio
     private EditText nameEt, shopNameEt, phoneEt, deliveryFeeEt, countryEt,
             stateEt, cityEt, addressEt, emailEt, passwordEt, cPasswordEt;
     private Button registerBtn;
+    private Spinner dropdown;
+    private String selectedRole="";
+    private static final String[] role = {"Retailer", "Wholesaler"};
+
 
     //permission constants
     private static final int LOCATION_REQUEST_CODE = 100;
@@ -96,8 +103,24 @@ public class RegisterSellerActivity extends AppCompatActivity implements Locatio
         passwordEt = findViewById(R.id.passwordEt);
         cPasswordEt = findViewById(R.id.cPasswordEt);
         registerBtn = findViewById(R.id.registerBtn);
-
+        dropdown=findViewById(R.id.spinner_role);
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, role);
+        //set the spinners adapter to the previously created one.
+        dropdown.setAdapter(adapter);
         //init permissions array
+        dropdown.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                selectedRole = parent.getItemAtPosition(position).toString();
+
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+                // sometimes you need nothing here
+            }
+        });
         locationPermissions = new String[]{Manifest.permission.ACCESS_FINE_LOCATION};
         cameraPermissions = new String[]{Manifest.permission.CAMERA, Manifest.permission.WRITE_EXTERNAL_STORAGE};
         storagePermissions = new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE};
@@ -141,6 +164,8 @@ public class RegisterSellerActivity extends AppCompatActivity implements Locatio
                 inputData();
             }
         });
+
+
     }
 
     private String fullName, shopName, phoneNumber, deliveryFee, country, state, city, address, email, password, confirmPassword;
@@ -240,11 +265,10 @@ public class RegisterSellerActivity extends AppCompatActivity implements Locatio
             hashMap.put("latitude", "" + latitude);
             hashMap.put("longitude", "" + longitude);
             hashMap.put("timestamp", "" + timestamp);
-            hashMap.put("accountType", "Seller");
+            hashMap.put("accountType","" +selectedRole );
             hashMap.put("online", "true");
             hashMap.put("shopOpen", "true");
             hashMap.put("profileImage", "");
-
             //save to db
             DatabaseReference ref = FirebaseDatabase.getInstance().getReference("Users");
             ref.child(firebaseAuth.getUid()).setValue(hashMap)
@@ -304,7 +328,7 @@ public class RegisterSellerActivity extends AppCompatActivity implements Locatio
                                 hashMap.put("online", "true");
                                 hashMap.put("shopOpen", "true");
                                 hashMap.put("profileImage", ""+downloadImageUri);//url of uploaded image
-
+                                hashMap.put("role",""+ selectedRole);
                                 //save to db
                                 DatabaseReference ref = FirebaseDatabase.getInstance().getReference("Users");
                                 ref.child(firebaseAuth.getUid()).setValue(hashMap)

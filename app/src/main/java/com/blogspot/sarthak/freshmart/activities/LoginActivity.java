@@ -150,15 +150,22 @@ public class LoginActivity extends AppCompatActivity {
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                         for (DataSnapshot ds: dataSnapshot.getChildren()){
                             String accountType = ""+ds.child("accountType").getValue();
-                            if (accountType.equals("Seller")){
+                            String role=""+ds.child("role").getValue();
+                            if (accountType.equals("Seller") && role.equals("Retailer")){
                                 progressDialog.dismiss();
                                 //user is seller
                                 startActivity(new Intent(LoginActivity.this, MainSellerActivity.class));
                                 finish();
                             }
+                            else if (accountType.equals("Seller") && role.equals("Wholesaler")){
+                                progressDialog.dismiss();
+                                //user is seller
+                                startActivity(new Intent(LoginActivity.this, MainWholesalerActivity.class));
+                                finish();
+                            }
                             else {
                                 progressDialog.dismiss();
-                                //user is buyer
+                                //user is buyer or customer
                                 startActivity(new Intent(LoginActivity.this, MainUserActivity.class));
                                 finish();
                             }

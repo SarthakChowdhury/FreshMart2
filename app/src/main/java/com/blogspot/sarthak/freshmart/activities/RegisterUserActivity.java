@@ -241,7 +241,7 @@ public class RegisterUserActivity extends AppCompatActivity implements LocationL
             hashMap.put("accountType", "User");
             hashMap.put("online", "true");
             hashMap.put("profileImage", "");
-
+            hashMap.put("role", "User");
             //save to db
             DatabaseReference ref = FirebaseDatabase.getInstance().getReference("Users");
             ref.child(firebaseAuth.getUid()).setValue(hashMap)
@@ -298,7 +298,7 @@ public class RegisterUserActivity extends AppCompatActivity implements LocationL
                                 hashMap.put("accountType", "User");
                                 hashMap.put("online", "true");
                                 hashMap.put("profileImage", ""+downloadImageUri);//url of uploaded image
-
+                                hashMap.put("role",""+"User");
                                 //save to db
                                 DatabaseReference ref = FirebaseDatabase.getInstance().getReference("Users");
                                 ref.child(firebaseAuth.getUid()).setValue(hashMap)

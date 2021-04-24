@@ -208,10 +208,8 @@ public class AdapterProductUser extends RecyclerView.Adapter<AdapterProductUser.
                 String priceEach = price;
                 String totalPrice = finalPriceTv.getText().toString().trim().replace("$","");
                 String quantity = quantityTv.getText().toString().trim();
-
                 //add to db(SQLite)
                 addToCart(productId, title, priceEach, totalPrice, quantity);
-
                 dialog.dismiss();
             }
         });

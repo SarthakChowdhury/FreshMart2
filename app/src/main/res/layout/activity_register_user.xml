@@ -197,7 +197,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="5dp"
-        android:text="Are you a seller? Register as Seller"
+        android:text="Are you a seller? Register as a Retailer or Wholesaler"
         android:layout_centerHorizontal="true"
         android:layout_alignParentBottom="true"/>
 

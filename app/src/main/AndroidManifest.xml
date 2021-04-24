@@ -18,6 +18,7 @@
         android:theme="@style/AppTheme.NoActionBar"
         android:usesCleartextTraffic="true">
         <activity android:name="com.blogspot.sarthak.freshmart.activities.AddPromotionCodeActivity"></activity>
+        <activity android:name="com.blogspot.sarthak.freshmart.activities.SwitchPurchaseActivity"></activity>
         <activity android:name="com.blogspot.sarthak.freshmart.activities.PromotionCodesActivity" />
         <activity android:name="com.blogspot.sarthak.freshmart.activities.SettingsActivity" />
         <activity android:name="com.blogspot.sarthak.freshmart.activities.OrderDetailsSellerActivity" />
@@ -34,6 +35,7 @@
         <activity android:name="com.blogspot.sarthak.freshmart.activities.RegisterUserActivity" />
         <activity android:name="com.blogspot.sarthak.freshmart.activities.RegisterSellerActivity" />
         <activity android:name="com.blogspot.sarthak.freshmart.activities.LoginActivity" />
+        <activity android:name="com.blogspot.sarthak.freshmart.activities.MainWholesalerActivity" />
         <activity
             android:name="com.blogspot.sarthak.freshmart.activities.ShopDetailsActivity"
             android:windowSoftInputMode="stateHidden" /> <!-- hide keyboard by default -->

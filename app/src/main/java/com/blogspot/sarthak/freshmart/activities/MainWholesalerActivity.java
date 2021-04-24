@@ -1,9 +1,5 @@
 package com.blogspot.sarthak.freshmart.activities;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
@@ -21,12 +17,16 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.RecyclerView;
+
+import com.blogspot.atifsoftwares.grocery.R;
+import com.blogspot.sarthak.freshmart.Constants;
 import com.blogspot.sarthak.freshmart.adapters.AdapterOrderShop;
 import com.blogspot.sarthak.freshmart.adapters.AdapterProductSeller;
-import com.blogspot.sarthak.freshmart.Constants;
 import com.blogspot.sarthak.freshmart.models.ModelOrderShop;
 import com.blogspot.sarthak.freshmart.models.ModelProduct;
-import com.blogspot.atifsoftwares.grocery.R;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
@@ -41,7 +41,7 @@ import com.squareup.picasso.Picasso;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public class MainSellerActivity extends AppCompatActivity {
+public class MainWholesalerActivity extends AppCompatActivity {
 
     private TextView nameTv, shopNameTv, emailTv, tabProductsTv, tabOrdersTv, filteredProductsTv, filteredOrdersTv;
     private EditText searchProductEt;
@@ -62,8 +62,7 @@ public class MainSellerActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main_seller);
-
+        setContentView(R.layout.activity_main_wholeasaler);
         nameTv = findViewById(R.id.nameTv);
         shopNameTv = findViewById(R.id.shopNameTv);
         emailTv = findViewById(R.id.emailTv);
@@ -131,7 +130,7 @@ public class MainSellerActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 //open edit profile activity
-                startActivity(new Intent(MainSellerActivity.this, ProfileEditSellerActivity.class));
+                startActivity(new Intent(MainWholesalerActivity.this, ProfileEditSellerActivity.class));
             }
         });
 
@@ -139,7 +138,7 @@ public class MainSellerActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 //open edit add product activity
-                startActivity(new Intent(MainSellerActivity.this, AddProductActivity.class));
+                startActivity(new Intent(MainWholesalerActivity.this, AddProductActivity.class));
 
             }
         });
@@ -161,7 +160,7 @@ public class MainSellerActivity extends AppCompatActivity {
         filterProductBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                AlertDialog.Builder builder = new AlertDialog.Builder(MainSellerActivity.this);
+                AlertDialog.Builder builder = new AlertDialog.Builder(MainWholesalerActivity.this);
                 builder.setTitle("Filter Products:")
                         .setItems(Constants.productCategories1, new DialogInterface.OnClickListener() {
                             @Override
@@ -189,7 +188,7 @@ public class MainSellerActivity extends AppCompatActivity {
                 //options to display in dialog
                 final String[] options = {"All", "In Progress", "Completed", "Cancelled"};
                 //dialog
-                AlertDialog.Builder builder = new AlertDialog.Builder(MainSellerActivity.this);
+                AlertDialog.Builder builder = new AlertDialog.Builder(MainWholesalerActivity.this);
                 builder.setTitle("Filter Orders:")
                         .setItems(options, new DialogInterface.OnClickListener() {
                             @Override
@@ -212,33 +211,28 @@ public class MainSellerActivity extends AppCompatActivity {
         });
 
         //popup menu
-        final PopupMenu popupMenu = new PopupMenu(MainSellerActivity.this, moreBtn);
+        final PopupMenu popupMenu = new PopupMenu(MainWholesalerActivity.this, moreBtn);
         //add menu items to our menu
         popupMenu.getMenu().add("Settings");
         popupMenu.getMenu().add("Reviews");
         popupMenu.getMenu().add("Promotion Codes");
-        popupMenu.getMenu().add("Switch to Purchase Mode");
         //handle menu item click
         popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
             @Override
             public boolean onMenuItemClick(MenuItem menuItem) {
                 if (menuItem.getTitle() == "Settings"){
                     //start settings screen
-                    startActivity(new Intent(MainSellerActivity.this, SettingsActivity.class));
+                    startActivity(new Intent(MainWholesalerActivity.this, SettingsActivity.class));
                 }
                 else if (menuItem.getTitle() == "Reviews"){
                     //open same reviews activity as used in user main page
-                    Intent intent = new Intent(MainSellerActivity.this, ShopReviewsActivity.class);
+                    Intent intent = new Intent(MainWholesalerActivity.this, ShopReviewsActivity.class);
                     intent.putExtra("shopUid", ""+firebaseAuth.getUid());
                     startActivity(intent);
                 }
                 else if (menuItem.getTitle() == "Promotion Codes"){
                     //start promotions list screen
-                    startActivity(new Intent(MainSellerActivity.this, PromotionCodesActivity.class));
-                }
-                else if (menuItem.getTitle() == "Switch to Purchase Mode"){
-                    //start promotions list screen
-                    startActivity(new Intent(MainSellerActivity.this, SwitchPurchaseActivity.class));
+                    startActivity(new Intent(MainWholesalerActivity.this, PromotionCodesActivity.class));
                 }
 
                 return true;
@@ -274,7 +268,7 @@ public class MainSellerActivity extends AppCompatActivity {
                             orderShopArrayList.add(modelOrderShop);
                         }
                         //setup adapter
-                        adapterOrderShop = new AdapterOrderShop(MainSellerActivity.this, orderShopArrayList);
+                        adapterOrderShop = new AdapterOrderShop(MainWholesalerActivity.this, orderShopArrayList);
                         //set adapter to recyclerview
                         ordersRv.setAdapter(adapterOrderShop);
                     }
@@ -310,7 +304,7 @@ public class MainSellerActivity extends AppCompatActivity {
 
                         }
                         //setup adapter
-                        adapterProductSeller = new AdapterProductSeller(MainSellerActivity.this, productList);
+                        adapterProductSeller = new AdapterProductSeller(MainWholesalerActivity.this, productList);
                         //set adapter
                         productsRv.setAdapter(adapterProductSeller);
                     }
@@ -338,7 +332,7 @@ public class MainSellerActivity extends AppCompatActivity {
                             productList.add(modelProduct);
                         }
                         //setup adapter
-                        adapterProductSeller = new AdapterProductSeller(MainSellerActivity.this, productList);
+                        adapterProductSeller = new AdapterProductSeller(MainWholesalerActivity.this, productList);
                         //set adapter
                         productsRv.setAdapter(adapterProductSeller);
                     }
@@ -399,7 +393,7 @@ public class MainSellerActivity extends AppCompatActivity {
                     public void onFailure(@NonNull Exception e) {
                         //failed updating
                         progressDialog.dismiss();
-                        Toast.makeText(MainSellerActivity.this, ""+e.getMessage(), Toast.LENGTH_SHORT).show();
+                        Toast.makeText(MainWholesalerActivity.this, ""+e.getMessage(), Toast.LENGTH_SHORT).show();
                     }
                 });
     }
@@ -407,7 +401,7 @@ public class MainSellerActivity extends AppCompatActivity {
     private void checkUser() {
         FirebaseUser user = firebaseAuth.getCurrentUser();
         if (user == null){
-            startActivity(new Intent(MainSellerActivity.this, LoginActivity.class));
+            startActivity(new Intent(MainWholesalerActivity.this, LoginActivity.class));
             finish();
         }
         else {

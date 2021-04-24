@@ -58,7 +58,7 @@ public class RegisterSellerActivity extends AppCompatActivity implements Locatio
             stateEt, cityEt, addressEt, emailEt, passwordEt, cPasswordEt;
     private Button registerBtn;
     private Spinner dropdown;
-    private String selectedRole="";
+    private String selectedRole="Retailer";
     private static final String[] role = {"Retailer", "Wholesaler"};
 
 
@@ -265,10 +265,11 @@ public class RegisterSellerActivity extends AppCompatActivity implements Locatio
             hashMap.put("latitude", "" + latitude);
             hashMap.put("longitude", "" + longitude);
             hashMap.put("timestamp", "" + timestamp);
-            hashMap.put("accountType","" +selectedRole );
+            hashMap.put("accountType",""+"Seller"  );
             hashMap.put("online", "true");
             hashMap.put("shopOpen", "true");
             hashMap.put("profileImage", "");
+            hashMap.put("role",""+ selectedRole);
             //save to db
             DatabaseReference ref = FirebaseDatabase.getInstance().getReference("Users");
             ref.child(firebaseAuth.getUid()).setValue(hashMap)
@@ -277,7 +278,10 @@ public class RegisterSellerActivity extends AppCompatActivity implements Locatio
                         public void onSuccess(Void aVoid) {
                             //db updated
                             progressDialog.dismiss();
-                            startActivity(new Intent(RegisterSellerActivity.this, MainSellerActivity.class));
+                            if (selectedRole=="Retailer")
+                                startActivity(new Intent(RegisterSellerActivity.this, MainSellerActivity.class));
+                            else
+                                startActivity(new Intent(RegisterSellerActivity.this, MainWholesalerActivity.class));
                             finish();
                         }
                     })

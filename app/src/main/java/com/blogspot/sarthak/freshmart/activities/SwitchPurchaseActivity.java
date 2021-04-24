@@ -1,9 +1,5 @@
 package com.blogspot.sarthak.freshmart.activities;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
@@ -13,6 +9,10 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.blogspot.atifsoftwares.grocery.R;
 import com.blogspot.sarthak.freshmart.adapters.AdapterOrderUser;
@@ -33,7 +33,7 @@ import com.squareup.picasso.Picasso;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public class MainUserActivity extends AppCompatActivity {
+public class SwitchPurchaseActivity extends AppCompatActivity {
 
     private TextView nameTv, emailTv, phoneTv, tabShopsTv, tabOrdersTv;
     private RelativeLayout shopsRl, ordersRl;
@@ -53,8 +53,7 @@ public class MainUserActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main_user);
-
+        setContentView(R.layout.activity_purchase_mode);
         nameTv = findViewById(R.id.nameTv);
         emailTv = findViewById(R.id.emailTv);
         phoneTv = findViewById(R.id.phoneTv);
@@ -92,7 +91,7 @@ public class MainUserActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 //open edit profile activity
-                startActivity(new Intent(MainUserActivity.this, ProfileEditUserActivity.class));
+                startActivity(new Intent(SwitchPurchaseActivity.this, ProfileEditUserActivity.class));
 
             }
         });
@@ -116,7 +115,7 @@ public class MainUserActivity extends AppCompatActivity {
         settingsBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(MainUserActivity.this, SettingsActivity.class));
+                startActivity(new Intent(SwitchPurchaseActivity.this, SettingsActivity.class));
             }
         });
 
@@ -169,7 +168,7 @@ public class MainUserActivity extends AppCompatActivity {
                     public void onFailure(@NonNull Exception e) {
                         //failed updating
                         progressDialog.dismiss();
-                        Toast.makeText(MainUserActivity.this, ""+e.getMessage(), Toast.LENGTH_SHORT).show();
+                        Toast.makeText(SwitchPurchaseActivity.this, ""+e.getMessage(), Toast.LENGTH_SHORT).show();
                     }
                 });
     }
@@ -177,7 +176,7 @@ public class MainUserActivity extends AppCompatActivity {
     private void checkUser() {
         FirebaseUser user = firebaseAuth.getCurrentUser();
         if (user == null){
-            startActivity(new Intent(MainUserActivity.this, LoginActivity.class));
+            startActivity(new Intent(SwitchPurchaseActivity.this, LoginActivity.class));
             finish();
         }
         else {
@@ -250,7 +249,7 @@ public class MainUserActivity extends AppCompatActivity {
                                             ordersList.add(modelOrderUser);
                                         }
                                         //setup adapter
-                                        adapterOrderUser = new AdapterOrderUser(MainUserActivity.this, ordersList);
+                                        adapterOrderUser = new AdapterOrderUser(SwitchPurchaseActivity.this, ordersList);
                                         //set to recyclerview
                                         ordersRv.setAdapter(adapterOrderUser);
                                     }
@@ -276,7 +275,7 @@ public class MainUserActivity extends AppCompatActivity {
         shopsList = new ArrayList<>();
 
         DatabaseReference ref = FirebaseDatabase.getInstance().getReference("Users");
-        ref.orderByChild("role").equalTo("Retailer")
+        ref.orderByChild("role").equalTo("Wholesaler")
                 .addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -296,7 +295,7 @@ public class MainUserActivity extends AppCompatActivity {
                             //shopsList.add(modelShop);
                         }
                         //setup adapter
-                        adapterShop = new AdapterShop(MainUserActivity.this, shopsList);
+                        adapterShop = new AdapterShop(SwitchPurchaseActivity.this, shopsList);
                         //set adapter to recyclerview
                         shopsRv.setAdapter(adapterShop);
                     }

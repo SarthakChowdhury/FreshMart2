@@ -217,6 +217,7 @@ public class MainSellerActivity extends AppCompatActivity {
         popupMenu.getMenu().add("Settings");
         popupMenu.getMenu().add("Reviews");
         popupMenu.getMenu().add("Promotion Codes");
+        popupMenu.getMenu().add("Switch to Purchase Mode");
         //handle menu item click
         popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
             @Override
@@ -234,6 +235,10 @@ public class MainSellerActivity extends AppCompatActivity {
                 else if (menuItem.getTitle() == "Promotion Codes"){
                     //start promotions list screen
                     startActivity(new Intent(MainSellerActivity.this, PromotionCodesActivity.class));
+                }
+                else if (menuItem.getTitle() == "Switch to Purchase Mode"){
+                    //start promotions list screen
+                    startActivity(new Intent(MainSellerActivity.this, SwitchPurchaseActivity.class));
                 }
 
                 return true;

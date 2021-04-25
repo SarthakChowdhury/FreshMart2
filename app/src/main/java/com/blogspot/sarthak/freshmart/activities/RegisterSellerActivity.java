@@ -278,20 +278,27 @@ public class RegisterSellerActivity extends AppCompatActivity implements Locatio
                         public void onSuccess(Void aVoid) {
                             //db updated
                             progressDialog.dismiss();
-                            if (selectedRole=="Retailer")
-                                startActivity(new Intent(RegisterSellerActivity.this, MainSellerActivity.class));
-                            else
-                                startActivity(new Intent(RegisterSellerActivity.this, MainWholesalerActivity.class));
+                            if (selectedRole=="Retailer"){
+                                Intent intent=new Intent(RegisterSellerActivity.this,VerifyEmail.class);
+                                intent.putExtra("email",email);
+                                startActivity(intent);
+                            }
+                            else{
+                                Intent intent=new Intent(RegisterSellerActivity.this,VerifyEmail.class);
+                                intent.putExtra("email",email);
+                                startActivity(intent);
+                            }
+                                //startActivity(new Intent(RegisterSellerActivity.this, MainWholesalerActivity.class));
                             finish();
                         }
                     })
                     .addOnFailureListener(new OnFailureListener() {
                         @Override
-                        public void onFailure(@NonNull Exception e) {
-                            //failed updating db
+                        public void onFailure(@NonNull Exception e) {                            //failed updating db
                             progressDialog.dismiss();
-                            startActivity(new Intent(RegisterSellerActivity.this, MainSellerActivity.class));
-                            finish();
+                            Intent intent=new Intent(RegisterSellerActivity.this,VerifyEmail.class);
+                            intent.putExtra("email",email);
+                            startActivity(intent);                            finish();
                         }
                     });
         }
@@ -341,7 +348,9 @@ public class RegisterSellerActivity extends AppCompatActivity implements Locatio
                                             public void onSuccess(Void aVoid) {
                                                 //db updated
                                                 progressDialog.dismiss();
-                                                startActivity(new Intent(RegisterSellerActivity.this, MainSellerActivity.class));
+                                                Intent intent=new Intent(RegisterSellerActivity.this,VerifyEmail.class);
+                                                intent.putExtra("email",email);
+                                                startActivity(intent);
                                                 finish();
                                             }
                                         })
@@ -350,7 +359,9 @@ public class RegisterSellerActivity extends AppCompatActivity implements Locatio
                                             public void onFailure(@NonNull Exception e) {
                                                 //failed updating db
                                                 progressDialog.dismiss();
-                                                startActivity(new Intent(RegisterSellerActivity.this, MainSellerActivity.class));
+                                                Intent intent=new Intent(RegisterSellerActivity.this,VerifyEmail.class);
+                                                intent.putExtra("email",email);
+                                                startActivity(intent);
                                                 finish();
                                             }
                                         });

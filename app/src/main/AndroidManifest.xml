@@ -17,8 +17,9 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme.NoActionBar"
         android:usesCleartextTraffic="true">
-        <activity android:name="com.blogspot.sarthak.freshmart.activities.AddPromotionCodeActivity"></activity>
-        <activity android:name="com.blogspot.sarthak.freshmart.activities.SwitchPurchaseActivity"></activity>
+        <activity android:name="com.blogspot.sarthak.freshmart.activities.VerifyEmail"></activity>
+        <activity android:name="com.blogspot.sarthak.freshmart.activities.AddPromotionCodeActivity" />
+        <activity android:name="com.blogspot.sarthak.freshmart.activities.SwitchPurchaseActivity" />
         <activity android:name="com.blogspot.sarthak.freshmart.activities.PromotionCodesActivity" />
         <activity android:name="com.blogspot.sarthak.freshmart.activities.SettingsActivity" />
         <activity android:name="com.blogspot.sarthak.freshmart.activities.OrderDetailsSellerActivity" />

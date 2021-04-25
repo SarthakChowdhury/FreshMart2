@@ -2,7 +2,7 @@ package com.blogspot.sarthak.freshmart;
 
 public class Constants {
 
-    public static final String FCM_KEY = "AAAA9xV4t7Y:APA91bFh-pZ0yrLPu1BXU8NBwECFdSSvRTA51xgiB75FdZ1hh2Cmrxt_l-ND2oLmrefa6BFSV8myIhtIxqIdI9XOJYsk-Kg--u9Ty1e4rgANfWzEna-SdVaj9sIKSNyoaqJ5SNjFNMA8";
+    public static final String FCM_KEY = "AAAA2xWPwJo:APA91bGkH2AwReuPQDJ6dB90XumUiN16jwDat0HilgznoxVtU_4nGUm4wbi8wBfMm8g6RNWPyJWEYYDzvaPNEUVSPZi9pZ3eeTxFypdmUBsj9rcYpLirWvZV8lUHbQJrVL4gopzV5DJl";
     public static final String FCM_TOPIC = "PUSH_NOTIFICATIONS";
 
     //product categories

@@ -154,19 +154,25 @@ public class LoginActivity extends AppCompatActivity {
                             if (accountType.equals("Seller") && role.equals("Retailer")){
                                 progressDialog.dismiss();
                                 //user is seller
-                                startActivity(new Intent(LoginActivity.this, MainSellerActivity.class));
+                                Intent intent=new Intent(LoginActivity.this,VerifyEmail.class);
+                                intent.putExtra("email",email);
+                                startActivity(intent);
                                 finish();
                             }
                             else if (accountType.equals("Seller") && role.equals("Wholesaler")){
                                 progressDialog.dismiss();
                                 //user is seller
-                                startActivity(new Intent(LoginActivity.this, MainWholesalerActivity.class));
+                                Intent intent=new Intent(LoginActivity.this,VerifyEmail.class);
+                                intent.putExtra("email",email);
+                                startActivity(intent);
                                 finish();
                             }
                             else {
                                 progressDialog.dismiss();
                                 //user is buyer or customer
-                                startActivity(new Intent(LoginActivity.this, MainUserActivity.class));
+                                Intent intent=new Intent(LoginActivity.this,VerifyEmail.class);
+                                intent.putExtra("email",email);
+                                startActivity(intent);
                                 finish();
                             }
                         }

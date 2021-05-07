@@ -250,7 +250,9 @@ public class RegisterUserActivity extends AppCompatActivity implements LocationL
                         public void onSuccess(Void aVoid) {
                             //db updated
                             progressDialog.dismiss();
-                            startActivity(new Intent(RegisterUserActivity.this, MainUserActivity.class));
+                            Intent intent=new Intent(RegisterUserActivity.this,VerifyEmail.class);
+                            intent.putExtra("email",email);
+                            startActivity(intent);
                             finish();
                         }
                     })
@@ -259,7 +261,9 @@ public class RegisterUserActivity extends AppCompatActivity implements LocationL
                         public void onFailure(@NonNull Exception e) {
                             //failed updating db
                             progressDialog.dismiss();
-                            startActivity(new Intent(RegisterUserActivity.this, MainUserActivity.class));
+                            Intent intent=new Intent(RegisterUserActivity.this,VerifyEmail.class);
+                            intent.putExtra("email",email);
+                            startActivity(intent);
                             finish();
                         }
                     });
@@ -307,7 +311,9 @@ public class RegisterUserActivity extends AppCompatActivity implements LocationL
                                             public void onSuccess(Void aVoid) {
                                                 //db updated
                                                 progressDialog.dismiss();
-                                                startActivity(new Intent(RegisterUserActivity.this, MainUserActivity.class));
+                                                Intent intent=new Intent(RegisterUserActivity.this,VerifyEmail.class);
+                                                intent.putExtra("email",email);
+                                                startActivity(intent);
                                                 finish();
                                             }
                                         })
@@ -316,7 +322,9 @@ public class RegisterUserActivity extends AppCompatActivity implements LocationL
                                             public void onFailure(@NonNull Exception e) {
                                                 //failed updating db
                                                 progressDialog.dismiss();
-                                                startActivity(new Intent(RegisterUserActivity.this, MainUserActivity.class));
+                                                Intent intent=new Intent(RegisterUserActivity.this,VerifyEmail.class);
+                                                intent.putExtra("email",email);
+                                                startActivity(intent);
                                                 finish();
                                             }
                                         });
